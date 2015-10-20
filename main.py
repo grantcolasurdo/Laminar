@@ -1,7 +1,6 @@
 import math
 
 import matplotlib.pyplot as plt
-
 import finmath
 
 __author__ = 'gcolasurdo'
@@ -13,7 +12,7 @@ def snigma(t):
     :param t: denotes the time variable as this should be dependent on time only
     :return: a map of time t to variance sigma
     """
-    return math.exp(-t/500)
+    return math.exp(-t / 500)
 
 
 def miyu(t):

@@ -2,16 +2,17 @@ import random
 import math
 import operator
 import functools
+
 import numpy as np
 
 __author__ = 'gcolasurdo'
-
 
 '''
 Hokay so this is where we start to make our own functions for our statistical processes
 Hopefully I can break it down so that we're doing the processes and it's the data that
 gets moved through them.
 '''
+
 
 # Lets start with something simple. We're going to need math stuff
 # Apparently the stuff is already in there.
@@ -53,9 +54,9 @@ class Stochastic:
         self.st = np.zeros(self.k)
         self.defsigma()
         self.defmiyu()
-        self.dx = np.zeros(self.k-1)
-        self.XCollection = [None]*numw
-        self.BCollection = [None]*numw
+        self.dx = np.zeros(self.k - 1)
+        self.XCollection = [None] * numw
+        self.BCollection = [None] * numw
         for w in range(numw):
             self.BCollection[w] = Brownian(self.bt)
             self.XCollection[w] = self.getxt(w)
@@ -76,11 +77,11 @@ class Stochastic:
         This should return and array that holds the X(t,w)
         """
         xt = np.zeros(self.k)
-        self.dx = self.BCollection[w].dw*self.st[:-1] + self.dt*self.ut[:-1]
+        self.dx = self.BCollection[w].dw * self.st[:-1] + self.dt * self.ut[:-1]
         for ti in self.bt[:-1]:
-            xt[ti+1] = xt[ti]+self.dx[ti]
+            xt[ti + 1] = xt[ti] + self.dx[ti]
         return xt
-    # I'll put down the functions here
+        # I'll put down the functions here
 
 
 class Brownian:
@@ -94,9 +95,8 @@ class Brownian:
         motion
         :return: self
         """
-        self.dw = np.zeros(len(bt)-1)
-        self.dt = np.zeros(len(bt)-1)
+        self.dw = np.zeros(len(bt) - 1)
+        self.dt = np.zeros(len(bt) - 1)
         for ti in range(len(bt) - 1):
             self.dt[ti] = bt[ti + 1] - bt[ti]
             self.dw[ti] = random.normalvariate(0, math.sqrt(self.dt[ti]))
-
