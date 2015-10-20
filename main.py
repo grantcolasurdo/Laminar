@@ -1,8 +1,8 @@
 import math
-import finmath
-import csv
-import numpy as np
+
 import matplotlib.pyplot as plt
+
+import finmath
 
 __author__ = 'gcolasurdo'
 
@@ -21,14 +21,14 @@ def miyu(t):
     Ok so this will be the u(t) for the mean of my stochastic crap
     :return: The mapping of the stochastic's mean at time t
     """
-    return 0
+    return math.sin(t / 180)
 
 
-a = 1000
+a = 100
 y = finmath.Stochastic(a, snigma, miyu, 100)
 
 for x in y.XCollection:
-    
+    plt.plot(x)
 
 plt.show()
 
